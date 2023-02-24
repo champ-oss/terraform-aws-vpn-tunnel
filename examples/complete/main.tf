@@ -1,11 +1,3 @@
-locals {
-  tags = {
-    cost    = "shared"
-    creator = "terraform"
-    git     = var.git
-  }
-}
-
 provider "aws" {
   region = "us-east-2"
 }
