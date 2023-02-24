@@ -13,7 +13,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 
-def modify_vpn_tunnel(vpn_connection_id: str, vpn_tunnel_outside_ip_address: str, ) -> None:
+def modify_vpn_tunnel(vpn_connection_id: str, vpn_tunnel_outside_ip_address: str) -> None:
     logger.info("modify vpn tunnel")
     random_dpd_timeout = randint(30, 130)  # Pick a random number between 30 and 130.
 
