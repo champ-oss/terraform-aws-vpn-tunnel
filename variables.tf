@@ -19,3 +19,9 @@ variable "vpn_connection_id" {
   type        = string
   default     = "abc123"
 }
+
+variable "lambda_policy" {
+  type        = any
+  description = "point to data.aws_iam_policy_document.custom.json"
+  default     = null
+}
