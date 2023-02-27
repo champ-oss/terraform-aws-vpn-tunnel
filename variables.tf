@@ -25,3 +25,9 @@ variable "lambda_policy" {
   description = "point to data.aws_iam_policy_document.custom.json"
   default     = null
 }
+
+variable "dpd_timeout" {
+  description = "dpd_timeout value for vpn tunnel"
+  type        = number
+  default     = 30
+}
