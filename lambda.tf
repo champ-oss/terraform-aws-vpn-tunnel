@@ -11,5 +11,6 @@ module "vpn_tunnel_lambda" {
   reserved_concurrent_executions = 1
   environment = {
     VPN_CONNECTION_ID = var.vpn_connection_id
+    DPD_TIMEOUT       = var.dpd_timeout
   }
 }
