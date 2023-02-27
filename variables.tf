@@ -27,7 +27,7 @@ variable "lambda_policy" {
 }
 
 variable "dpd_timeout" {
-  description = "dpd_timeout value"
+  description = "dpd_timeout value for vpn tunnel"
   type        = number
   default     = 30
 }
