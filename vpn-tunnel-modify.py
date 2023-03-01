@@ -34,7 +34,8 @@ def lambda_handler(event, context):
     message = event['Records'][0]['Sns']['Message']
     parsed_message = json.loads(message)
     vpn_tunnel_outside_ip_address = parsed_message['Trigger']['Dimensions'][0]['value']
-    if enable_restart == True:
+
+    if enable_restart == "true":
         modify_vpn_tunnel(vpn_connection_id, vpn_tunnel_outside_ip_address, dpd_timeout)
     else:
         logger.info("restart currently disabled")
