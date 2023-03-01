@@ -29,9 +29,12 @@ def lambda_handler(event, context):
     # env variables requirements
     vpn_connection_id = os.environ['VPN_CONNECTION_ID']
     dpd_timeout = os.environ['DPD_TIMEOUT'] # usually set to 30 by default
+    enable_restart = os.environ['ENABLED_RESTART']
 
     message = event['Records'][0]['Sns']['Message']
     parsed_message = json.loads(message)
     vpn_tunnel_outside_ip_address = parsed_message['Trigger']['Dimensions'][0]['value']
-
-    modify_vpn_tunnel(vpn_connection_id, vpn_tunnel_outside_ip_address, dpd_timeout)
+    if enable_restart == True:
+        modify_vpn_tunnel(vpn_connection_id, vpn_tunnel_outside_ip_address, dpd_timeout)
+    else:
+        logger.info("restart currently disabled")
