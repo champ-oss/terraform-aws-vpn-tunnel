@@ -31,3 +31,9 @@ variable "dpd_timeout" {
   type        = number
   default     = 30
 }
+
+variable "enabled_restart" {
+  description = "enabled restart to modify tunnel restart"
+  type        = string
+  default     = "false"
+}
