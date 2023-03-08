@@ -4,6 +4,6 @@ output "lambda_function_arn" {
 }
 
 output "lambda_function_name" {
-  description = "function name"
+  description = "lambda function name"
   value       = module.vpn_tunnel_lambda.function_name
 }
