@@ -9,8 +9,8 @@ locals {
 data "archive_file" "lambda_zip" {
   type             = "zip"
   output_file_mode = "0666"
-  source_file      = "${path.module}/vpn-tunnel-modify.py"
-  output_path      = "${path.module}/vpn-tunnel-modify.zip"
+  source_file      = "${path.module}/vpn_tunnel_modify.py"
+  output_path      = "${path.module}/vpn_tunnel_modify.zip"
 }
 
 resource "random_string" "identifier" {
