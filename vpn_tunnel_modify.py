@@ -28,7 +28,7 @@ def modify_vpn_tunnel(vpn_connection_id: str, vpn_tunnel_outside_ip_address: str
 def lambda_handler(event, context):
     # env variables requirements
     vpn_connection_id = os.environ['VPN_CONNECTION_ID']
-    dpd_timeout = os.environ['DPD_TIMEOUT'] # usually set to 30 by default
+    dpd_timeout = 30
     enable_restart = os.environ['ENABLED_RESTART']
 
     message = event['Records'][0]['Sns']['Message']

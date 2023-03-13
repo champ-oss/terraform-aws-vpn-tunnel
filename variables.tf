@@ -26,12 +26,6 @@ variable "lambda_policy" {
   default     = null
 }
 
-variable "dpd_timeout" {
-  description = "dpd_timeout value for vpn tunnel"
-  type        = number
-  default     = 30
-}
-
 variable "enabled_restart" {
   description = "enabled restart to modify tunnel restart"
   type        = string
