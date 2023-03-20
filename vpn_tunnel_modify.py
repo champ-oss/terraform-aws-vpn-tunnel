@@ -37,12 +37,14 @@ def lambda_handler(event, context):
 
     if enable_restart == "false":
         logger.info("restart disabled, do nothing")
-        exit(0)
-    elif vpn_connections_response['VpnConnections'][0]['VgwTelemetry'][0]['Status'] == 'UP' and vpn_connections_response['VpnConnections'][0]['VgwTelemetry'][1]['Status'] == 'UP':
+        return
+
+    if vpn_connections_response['VpnConnections'][0]['VgwTelemetry'][0]['Status'] == 'UP' and vpn_connections_response['VpnConnections'][0]['VgwTelemetry'][1]['Status'] == 'UP':
         logger.info("tunnels are both up, do nothing")
-        exit(0)
-    elif vpn_connections_response['VpnConnections'][0]['State'] == 'modifying':
+        return
+
+    if vpn_connections_response['VpnConnections'][0]['State'] == 'modifying':
         logger.info("tunnel is currently being restarted, do nothing")
-        exit(0)
-    else:
-        modify_vpn_tunnel(vpn_connection_id, vpn_tunnel_outside_ip_address, dpd_timeout)
+        return
+
+    modify_vpn_tunnel(vpn_connection_id, vpn_tunnel_outside_ip_address, dpd_timeout)
