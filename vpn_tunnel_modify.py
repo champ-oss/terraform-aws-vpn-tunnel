@@ -35,7 +35,7 @@ def lambda_handler(event, context):
     vpn_tunnel_outside_ip_address = parsed_message['Trigger']['Dimensions'][0]['value']
     vpn_connections_response = ec2.describe_vpn_connections(VpnConnectionIds=[vpn_connection_id])
 
-    if enable_restart == "false"
+    if enable_restart == "false":
         logger.info("restart disabled, do nothing")
         exit(0)
     elif vpn_connections_response['VpnConnections'][0]['VgwTelemetry'][0]['Status'] == 'UP' and vpn_connections_response['VpnConnections'][0]['VgwTelemetry'][1]['Status'] == 'UP':
