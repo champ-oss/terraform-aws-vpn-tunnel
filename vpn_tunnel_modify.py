@@ -24,7 +24,6 @@ def modify_vpn_tunnel(vpn_connection_id: str, vpn_tunnel_outside_ip_address: str
     )
     logger.info("modify vpn tunnel complete")
 
-
 def lambda_handler(event, context):
     # env variables requirements
     vpn_connection_id = os.environ['VPN_CONNECTION_ID']
@@ -36,6 +35,14 @@ def lambda_handler(event, context):
     vpn_tunnel_outside_ip_address = parsed_message['Trigger']['Dimensions'][0]['value']
 
     if enable_restart == "true":
-        modify_vpn_tunnel(vpn_connection_id, vpn_tunnel_outside_ip_address, dpd_timeout)
+        vpn_connections_response = ec2.describe_vpn_connections(VpnConnectionIds=[vpn_connection_id])
+        if vpn_connections_response['VpnConnections'][0]['VgwTelemetry'][0]['Status'] == 'UP' and vpn_connections_response['VpnConnections'][0]['VgwTelemetry'][1]['Status'] == 'UP':
+            logger.info("tunnels are both up, do nothing")
+            exit(0)
+        elif vpn_connections_response['VpnConnections'][0]['State'] == 'modifying':
+            logger.info("tunnel is currently being restarted, do nothing")
+            exit(0)
+        else:
+            modify_vpn_tunnel(vpn_connection_id, vpn_tunnel_outside_ip_address, dpd_timeout)
     else:
         logger.info("restart currently disabled")
