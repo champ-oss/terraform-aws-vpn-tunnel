@@ -1,5 +1,5 @@
 module "vpn_tunnel_lambda" {
-  source                         = "github.com/champ-oss/terraform-aws-lambda.git?ref=v1.0.134-c22cb62"
+  source                         = "github.com/champ-oss/terraform-aws-lambda.git?ref=v1.0.135-3a6e821"
   git                            = var.git
   name                           = "${var.name}-${random_string.identifier.result}"
   tags                           = merge(local.tags, var.tags)
